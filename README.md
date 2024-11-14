@@ -14,11 +14,11 @@
 
 - **Frontend**: 
   - HTML5, CSS3, JavaScript
-  - React (or another framework if you're using one)
+  - React
 
 - **Backend**:
   - Node.js, Express.js
-  - MongoDB (or your chosen database)
+  - MongoDB
 
 - **Authentication**: 
   - JWT (JSON Web Tokens) for secure user authentication
@@ -27,11 +27,11 @@
   - Git, GitHub
 
 - **Deployment**:
-  - AWS (if you're using cloud services for deployment)
+  - AWS
 
 - **Other Tools**:
-  - Docker (for containerization, if applicable)
-  - Nginx (for reverse proxy, if applicable)
+  - Docker (for containerization)
+  - Nginx (for reverse proxy)
 
 ## Installation
 
