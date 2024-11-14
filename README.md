@@ -2,6 +2,8 @@
 
 **Yippy-Connect Solution** is a food ordering website that allows users to browse menus, place orders, and enjoy a seamless food delivery experience. Designed with user convenience in mind, the platform offers an intuitive interface for selecting food items, customizing orders, and tracking deliveries.
 
+![image](https://github.com/user-attachments/assets/377b170c-217c-45cb-a1ac-8f81f5b5ce88)
+
 ## Features
 
 - Browse various restaurants and food items
@@ -59,4 +61,4 @@ To get started with the project, follow these steps:
 
 ---
 
-![image](https://github.com/user-attachments/assets/377b170c-217c-45cb-a1ac-8f81f5b5ce88)
+
