@@ -3,13 +3,13 @@ import userModel from "../models/userModel.js";
 import Stripe from "stripe";
 
 const stripe = new Stripe(
-  "sk_test_51PmBbVEAY6hHM7p6bU3fGq2ZxUoP14BoewexFhbIAVniaONyId4HL03V2hPnWhtVPpY2RfwzNbPCgGPJsutL19CF00TkPzuY7V"
+  "sk_test_51QLPRyRvP7NOucKRRZ1PJWemdlyzEtbjCSVbNxKm5hj03J20UKCkOwl4BKuFRcie0OhHnhn1h6Gxo8zj6EprqKUD009q0ACM4T"
 );
-console.log(process.env.STRIPE_SECRET_KEY);
+
 
 // placing user order for
 const placeOrder = async (req, res) => {
-  const frontend_url = "http://localhost:5174";
+  const frontend_url = process.env.FRONTEND_URL;
   try {
     const newOrder = new orderModel({
       userId: req.body.userId,

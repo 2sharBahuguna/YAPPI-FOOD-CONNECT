@@ -14,7 +14,13 @@ const PORT = 5000;
 
 // middleware
 app.use(express.json());
-app.use(cors());
+app.use(cors(
+  {
+    origin:[ "http://localhost:3000" , "http://localhost:5173" , "http://localhost:5174" ],
+    credentials: true,
+    
+  }
+));
 
 // DB connection
 if (process.env.MONGO_URI) {
