@@ -1,14 +1,111 @@
-.navbar{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px 4%;
+:root {
+  --navbar-bg-color: #fff;
+  --navbar-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --navbar-border-color: #ddd;
+  --navbar-text-color: #333;
+  --navbar-active-color: #007bff;
+  --navbar-padding: 8px 4%;
+  --navbar-logo-width: max(10%, 80px);
+  --navbar-profile-width: 40px;
+  --navbar-dropdown-bg-color: #fff;
+  --navbar-dropdown-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --navbar-dropdown-border-color: #ddd;
+  --navbar-dot-bg-color: red;
 }
 
-.navbar .logo{
-    width: max(10%, 80px);
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--navbar-padding);
+  background-color: var(--navbar-bg-color);
+  box-shadow: var(--navbar-shadow);
+  border-bottom: 1px solid var(--navbar-border-color);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
-.navbar .profile{
-    width: 40px;
+.navbar .logo {
+  width: var(--navbar-logo-width);
+}
+
+.navbar-menu {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+}
+
+.navbar-menu a,
+.navbar-menu .active {
+  text-decoration: none;
+  color: var(--navbar-text-color);
+  font-weight: bold;
+}
+
+.navbar-menu .active {
+  color: var(--navbar-active-color);
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.navbar-search-icon {
+  position: relative;
+}
+
+.navbar-search-icon .dot {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  width: 10px;
+  height: 10px;
+  background-color: var(--navbar-dot-bg-color);
+  border-radius: 50%;
+}
+
+.navbar-profile {
+  position: relative;
+}
+
+.navbar-profile-dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: var(--navbar-dropdown-bg-color);
+  box-shadow: var(--navbar-dropdown-shadow);
+  list-style: none;
+  padding: 10px;
+  margin: 0;
+}
+
+.navbar-profile:hover .navbar-profile-dropdown {
+  display: block;
+}
+
+.navbar-profile-dropdown li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 0;
+  cursor: pointer;
+}
+
+.navbar-profile-dropdown li img {
+  width: 20px;
+  height: 20px;
+}
+
+.navbar-profile-dropdown hr {
+  margin: 5px 0;
+  border: none;
+  border-top: 1px solid var(--navbar-dropdown-border-color);
+}
+
+.navbar .profile {
+  width: var(--navbar-profile-width);
 }

@@ -15,6 +15,7 @@ const MyOrders = () => {
         {},
         { headers: { token } }
       );
+
       setData(response.data.data);
     } catch (error) {
       console.error("Error fetching orders:", error.message);
@@ -47,7 +48,8 @@ const MyOrders = () => {
               <p>${order.amount}.00</p>
               <p>Items: {order.items.length}</p>
               <p><span>&#x25cf;</span><b>{order.status}</b></p>
-              <button onClick={fetchOrders}>Track Order</button>
+            
+           
             </div>
           )
         })}
