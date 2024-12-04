@@ -4,7 +4,7 @@ services:
     build:
       context: ./admin
     container_name: yappi-admin
-    image: ${{ secrets.DOCKER_USERNAME }}/yappi-admin:latest  # Specify image with tag
+    image: ${DOCKER_USERNAME}/yappi-admin:latest  # Use environment variable
     ports:
       - "8081:80"
     networks:
@@ -15,7 +15,7 @@ services:
     build:
       context: ./client
     container_name: yappi-client
-    image: ${{ secrets.DOCKER_USERNAME }}/yappi-client:latest  # Specify image with tag
+    image: ${DOCKER_USERNAME}/yappi-client:latest  # Use environment variable
     ports:
       - "8082:80"
     networks:
@@ -26,7 +26,7 @@ services:
     build:
       context: ./server
     container_name: yappi-server
-    image: ${{ secrets.DOCKER_USERNAME }}/yappi-server:latest  # Specify image with tag
+    image: ${DOCKER_USERNAME}/yappi-server:latest  # Use environment variable
     ports:
       - "5000:5000"
     networks:
