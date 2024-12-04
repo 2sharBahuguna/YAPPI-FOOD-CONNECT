@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: yappi-admin
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: yappi-admin
+  template:
+    metadata:
+      labels:
+        app: yappi-admin
+    spec:
+      containers:
+      - name: yappi-admin
+        image: yappi-admin
+        ports:
+        - containerPort: 80
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: yappi-client
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: yappi-client
+  template:
+    metadata:
+      labels:
+        app: yappi-client
+    spec:
+      containers:
+      - name: yappi-client
+        image: yappi-client:latest
+        ports:
+        - containerPort: 80
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: yappi-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: yappi-server
+  template:
+    metadata:
+      labels:
+        app: yappi-server
+    spec:
+      containers:
+      - name: yappi-server
+        image: yappi-server 
+        ports:
+        - containerPort: 5000
+        volumeMounts:
+        - mountPath: /app/uploads
+          name: server-uploads
+      volumes:
+      - name: server-uploads
+        emptyDir: {}
+
