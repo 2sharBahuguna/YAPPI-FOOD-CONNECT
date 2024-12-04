@@ -45,14 +45,3 @@ jobs:
       - name: Clean up Docker images
         run: |
           docker system prune -af
-
-      # Step 8: SSH to EC2 and deploy
-      - name: SSH to EC2 and deploy
-        uses: appleboy/ssh-action@v0.1.9
-        with:
-          host: ${{ secrets.EC2_HOST }}  # Your EC2 public IP
-          username: ec2-user  # Change to your EC2 username if different
-          key: ${{ secrets.EC2_SSH_KEY }}  # Add your private SSH key as GitHub secret
-          script: |
-            cd /path/to/your/project  # Navigate to the project directory on EC2
-            ./deploy.sh  # Run the deploy script you created earlier
