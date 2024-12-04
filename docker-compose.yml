@@ -1,0 +1,40 @@
+version: "3.8"
+services:
+  yappi-admin:
+    build:
+      context: ./admin
+    container_name: yappi-admin
+    ports:
+      - "8081:80"
+    networks:
+      - app-network
+    restart: always
+
+  yappi-client:
+    build:
+      context: ./client
+    container_name: yappi-client
+    ports:
+      - "8082:80"  # Change host port to 8082
+    networks:
+      - app-network
+    restart: always
+
+  server:
+    build:
+      context: ./server
+    container_name: yappi-server
+    ports:
+      - "5000:5000"
+    networks:
+      - app-network
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+    volumes:
+      - ./server/uploads:/app/uploads
+    restart: always
+
+networks:
+  app-network:
+    driver: bridge
