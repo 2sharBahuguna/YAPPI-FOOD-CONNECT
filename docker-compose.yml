@@ -4,6 +4,7 @@ services:
     build:
       context: ./admin
     container_name: yappi-admin
+    image: carribo/yappi-admin:latest  # Use environment variable
     ports:
       - "8081:80"
     networks:
@@ -14,8 +15,9 @@ services:
     build:
       context: ./client
     container_name: yappi-client
+    image: carribo/yappi-client:latest  # Use environment variable
     ports:
-      - "8082:80"  # Change host port to 8082
+      - "8082:80"
     networks:
       - app-network
     restart: always
@@ -24,6 +26,7 @@ services:
     build:
       context: ./server
     container_name: yappi-server
+    image: carribo/yappi-server:latest  # Use environment variable
     ports:
       - "5000:5000"
     networks:
