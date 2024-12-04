@@ -10,7 +10,7 @@
 - Add food to the cart and customize orders
 - User-friendly checkout process
 - Secure payment gateway integration
-- Order tracking and delivery updates
+- Order tracking and delivery updates 
 
 ## Technologies Used
 
