@@ -9,6 +9,7 @@ const addFood = async (req, res) => {
       .status(400)
       .json({ success: false, message: "No file uploaded" });
   }
+  
 
   // Check if necessary fields are present in the request body
   const { name, description, price, category } = req.body;
