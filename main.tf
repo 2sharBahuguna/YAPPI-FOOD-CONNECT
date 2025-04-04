@@ -12,7 +12,7 @@ resource "aws_security_group" "yappi_sg" {
     from_port   = 8081
     to_port     = 8081
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]  # Allow from anywhere (change as needed)
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   ingress {
@@ -33,7 +33,7 @@ resource "aws_security_group" "yappi_sg" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]  # Allow SSH from anywhere (restrict for security)
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   # Outbound Rule (Allow All)
@@ -47,20 +47,19 @@ resource "aws_security_group" "yappi_sg" {
 
 # EC2 Instance
 resource "aws_instance" "yappi_server" {
-  ami           = "ami-xxxxxxxxxxxxxxx" # Replace with a valid Ubuntu AMI ID for your region
+  ami           = "ami-084568db4383264d4" # Replace with valid Ubuntu AMI ID
   instance_type = "t2.micro"
-  key_name      = "your-key-pair"  # Replace with your key pair name
+  key_name      = "key2" # Use key name, not the .pem file
   security_groups = [aws_security_group.yappi_sg.name]
 
   tags = {
     Name = "yappi-food-connect-server"
   }
 
-  # User Data - Run Commands at Startup
   user_data = <<-EOF
     #!/bin/bash
     echo "Running startup script..."
-    
+
     # Update packages
     sudo apt-get update -y
 
@@ -71,7 +70,9 @@ resource "aws_instance" "yappi_server" {
     sudo install -m 0755 -d /etc/apt/keyrings
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo tee /etc/apt/keyrings/docker.asc > /dev/null
     sudo chmod a+r /etc/apt/keyrings/docker.asc
-    echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}") stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu $$(. /etc/os-release && echo $${UBUNTU_CODENAME:-$${VERSION_CODENAME}}) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
     sudo apt-get update -y
     sudo apt-get install -y docker-ce docker-ce-cli containerd.io
 
@@ -88,7 +89,7 @@ resource "aws_instance" "yappi_server" {
     # Change Directory & Run Docker Compose
     cd YAPPI-FOOD-CONNECT
     sudo docker-compose up -d
-    
+
     echo "Setup completed successfully."
   EOF
 }
