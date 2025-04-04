@@ -31,10 +31,14 @@ jobs:
       - name: Terraform Init
         run: terraform init
 
-      # Step 5: Terraform Plan
+      # Step 5: Terraform Import SG
+      - name: Terraform Import SG
+        run: terraform import aws_security_group.yappi_sg sg-0e464cd9acdc928ee
+
+      # Step 6: Terraform Plan
       - name: Terraform Plan
         run: terraform plan
 
-      # Step 6: Terraform Apply (auto-approve is risky; use with care)
+      # Step 7: Terraform Apply (auto-approve is risky; use with care)
       - name: Terraform Apply
         run: terraform apply -auto-approve
