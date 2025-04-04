@@ -3,53 +3,53 @@ provider "aws" {
 }
 
 # Security Group
-resource "aws_security_group" "yappi_sg" {
-  name        = "yappi-food-connect-sg"
-  description = "Security group for Yappi Food Connect Server"
+# resource "aws_security_group" "yappi_sg" {
+#   name        = "yappi-food-connect-sg"
+#   description = "Security group for Yappi Food Connect Server"
 
   # Inbound Rules
-  ingress {
-    from_port   = 8081
-    to_port     = 8081
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
+  # ingress {
+  #   from_port   = 8081
+  #   to_port     = 8081
+  #   protocol    = "tcp"
+  #   cidr_blocks = ["0.0.0.0/0"]
+  # }
 
-  ingress {
-    from_port   = 8082
-    to_port     = 8082
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
+#   ingress {
+#     from_port   = 8082
+#     to_port     = 8082
+#     protocol    = "tcp"
+#     cidr_blocks = ["0.0.0.0/0"]
+#   }
 
-  ingress {
-    from_port   = 5000
-    to_port     = 5000
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
+#   ingress {
+#     from_port   = 5000
+#     to_port     = 5000
+#     protocol    = "tcp"
+#     cidr_blocks = ["0.0.0.0/0"]
+#   }
 
-  ingress {
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
+  # ingress {
+  #   from_port   = 22
+  #   to_port     = 22
+  #   protocol    = "tcp"
+  #   cidr_blocks = ["0.0.0.0/0"]
+  # }
 
-  # Outbound Rule (Allow All)
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-}
+#   # Outbound Rule (Allow All)
+#   egress {
+#     from_port   = 0
+#     to_port     = 0
+#     protocol    = "-1"
+#     cidr_blocks = ["0.0.0.0/0"]
+#   }
+# }
 
 # EC2 Instance
 resource "aws_instance" "yappi_server" {
-  ami           = "ami-084568db4383264d4" # Replace with valid Ubuntu AMI ID
+  ami           = "ami-084568db4383264d4"  # Replace with valid Ubuntu AMI ID
   instance_type = "t2.micro"
-  key_name      = "key2" # Use key name, not the .pem file
+  key_name      =  "key2" # Use key name, not the .pem file
   security_groups = [aws_security_group.yappi_sg.name]
 
   tags = {
@@ -59,6 +59,7 @@ resource "aws_instance" "yappi_server" {
   user_data = <<-EOF
     #!/bin/bash
     echo "Running startup script..."
+
 
     # Update packages
     sudo apt-get update -y
